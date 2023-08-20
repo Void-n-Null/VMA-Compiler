@@ -1,4 +1,4 @@
-from command_registry import commands
+from CommandRegistry import commands
 
 def documentation_report():
     """

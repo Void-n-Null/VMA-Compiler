@@ -1,10 +1,10 @@
 import ErrorLog
-from command_registry import command
+from CommandRegistry import command
 from . import brush
-
+from Map import Map
 
 @command(example="HollowBrush(0,0,0,32,64,32,8)",notes="- The hollow brush is essentially a room or a hollowed-out cube with walls of specified thickness.")
-def hollowbrush(parameters: list):
+def hollowbrush(map: Map,parameters: list):
     """
     Adds a hollow rectangular brush with specified thickness.
 
@@ -22,14 +22,14 @@ def hollowbrush(parameters: list):
         return
 
     # Floor
-    brush([x, y, z, width, depth, thickness])
+    brush(map,[x, y, z, width, depth, thickness])
     # Ceiling
-    brush([x, y, z + height - thickness, width, depth, thickness])
+    brush(map,[x, y, z + height - thickness, width, depth, thickness])
     # North wall
-    brush([x, y, z + thickness, width, thickness, height - 2*thickness])
+    brush(map,[x, y, z + thickness, width, thickness, height - 2*thickness])
     # South wall
-    brush([x, y + depth - thickness, z + thickness, width, thickness, height - 2*thickness])
+    brush(map,[x, y + depth - thickness, z + thickness, width, thickness, height - 2*thickness])
     # West wall
-    brush([x, y + thickness, z + thickness, thickness, depth - 2*thickness, height - 2*thickness])
+    brush(map,[x, y + thickness, z + thickness, thickness, depth - 2*thickness, height - 2*thickness])
     # East wall
-    brush([x + width - thickness, y + thickness, z + thickness, thickness, depth - 2*thickness, height - 2*thickness])
+    brush(map,[x + width - thickness, y + thickness, z + thickness, thickness, depth - 2*thickness, height - 2*thickness])

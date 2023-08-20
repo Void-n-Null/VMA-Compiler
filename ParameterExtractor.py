@@ -1,3 +1,4 @@
+import contextlib
 import json
 
 class ParameterExtractor:
@@ -44,11 +45,9 @@ class ParameterExtractor:
         if start != -1 and end != -1:
             # Extract the substring that represents the dictionary
             dict_str = s[start:end + 1]
-            try:
+            with contextlib.suppress(json.JSONDecodeError):
                 extracted_dict = json.loads(dict_str)
                 # Replace the dictionary in the original string with a placeholder
                 s = s.replace(dict_str, 'DICTPLACEHOLDER')
                 return extracted_dict, s
-            except json.JSONDecodeError:
-                pass
         return {}, s

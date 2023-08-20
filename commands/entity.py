@@ -1,10 +1,11 @@
 import ErrorLog
-from command_registry import command
-from data import entity_types, AddEntity
+from CommandRegistry import command
+from Map import Map
+from Map import entity_types
 
 entity_type_list = '\n'.join(f"{type} - extra data: {data}" for type, data in entity_types.items())
 @command(example="Entity(light,0,0,0,{\"_light\": \"255 255 255 200\"})",notes=f"Existing Entity types: \n {entity_type_list}")
-def entity(parameters: list):
+def entity(map: Map, parameters: list):
     """
     Creates an Entity
     
@@ -16,4 +17,4 @@ def entity(parameters: list):
     else:
         ErrorLog.ReportError("Not enough parameters for creating Entity")
     data = parameters[4] if (len(parameters) >= 5) else {}
-    AddEntity(type,x,y,z,data)
+    map.add_entity(type,x,y,z,data)

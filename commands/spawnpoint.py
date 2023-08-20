@@ -1,9 +1,9 @@
-from command_registry import command
-from data import AddEntity
+from CommandRegistry import command
+from Map import Map
 import ErrorLog
 
 @command(example="SpawnPoint(Red,32,64,128)", notes="Spawn points are locations where players are spawned, either on red team or blue team")
-def spawnpoint(parameters: list):
+def spawnpoint(map: Map, parameters: list):
     """
     Sets a spawn point for players based on the team.
 
@@ -26,4 +26,4 @@ def spawnpoint(parameters: list):
         ErrorLog.ReportError(f"Team {TeamName} not valid")
         return
 
-    AddEntity("info_player_teamspawn", parameters[1], parameters[2], parameters[3], {"TeamNum": TeamValue})
+    map.add_entity("info_player_teamspawn", parameters[1], parameters[2], parameters[3], {"TeamNum": TeamValue})
