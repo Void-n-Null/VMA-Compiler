@@ -1,0 +1,7 @@
+{
+	"editorversion" "400"
+	"editorbuild" "8864"
+	"mapversion" "0"
+	"formatversion" "100"
+	"prefab" "0"
+}

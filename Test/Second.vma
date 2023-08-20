@@ -1,0 +1,23 @@
+// Define Textures
+SetTexture(DEV)     // Developer texture for basic brushes.
+SetTexture(SKYBOX)  // Skybox for the roof.
+
+// Red Team Room
+Brush(-512, -512, 0, 1024, 1024, 256)   // Room floor.
+HollowBrush(-512, -512, 256, 1024, 1024, 32, 16) // Walls and ceiling.
+SpawnPoint(Red,-256,-256,8)   // Red team spawn point.
+Entity(light,-256,-256,200,{"_light": "255 0 0 200"})  // Red light for ambiance.
+
+// Blue Team Room
+Brush(512, 512, 0, 1024, 1024, 256)     // Room floor.
+HollowBrush(512, 512, 256, 1024, 1024, 32, 16)  // Walls and ceiling.
+SpawnPoint(Blue,768,768,8)  // Blue team spawn point.
+Entity(light,768,768,200,{"_light": "0 0 255 200"})  // Blue light for ambiance.
+
+// Central Objective Room
+Brush(0, 0, 0, 1024, 1024, 256)         // Room floor.
+HollowBrush(0, 0, 256, 1024, 1024, 32, 16) // Walls and ceiling.
+Entity(light,0,0,200,{"_light": "255 255 255 200"})  // Neutral white light.
+
+// Objective (simulated using a light entity for the sake of this example)
+Entity(light,0,0,128,{"_light": "255 255 0 300"})    // Bright yellow light representing the objective.

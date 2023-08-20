@@ -1,0 +1,39 @@
+// Set the base texture to dev for the spawn rooms
+settexture(dev)
+
+// RED Spawn Room
+// Floor
+brush(0,0,0,256,256,16)
+brush(0,0,0,96,256,16) 
+brush(160,0,0,96,256,16) 
+
+// Walls
+brush(0,0,16,256,16,128)
+brush(0,0,16,16,256,128)
+brush(0,240,16,256,16,128)
+brush(240,0,16,16,256,128)
+// Ceiling
+brush(0,0,144,256,256,16)
+
+// BLU Spawn Room (opposite side)
+// Floor
+brush(512,0,0,256,256,16)
+brush(512,0,0,96,256,16) 
+brush(672,0,0,96,256,16) 
+// Walls
+brush(512,0,16,256,16,128)
+brush(512,0,16,16,256,128)
+brush(512,240,16,256,16,128)
+brush(752,0,16,16,256,128)
+// Ceiling
+brush(512,0,144,256,256,16)
+
+// Spawn Points for RED and BLU
+spawnpoint(red,64,128,24)
+spawnpoint(red,192,128,24)
+spawnpoint(blu,576,128,24)
+spawnpoint(blu,704,128,24)
+
+// Skybox boundary
+settexture(skybox)
+brush(-32,-32,-32,832,320,224)

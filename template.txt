@@ -1,0 +1,20 @@
+<versioninfo>
+<viewsettings>
+<palette_plus>
+<colorcorrection_plus>
+<light_plus>
+<bgimages_plus>
+world
+{
+	"id" "1"
+	"mapversion" "0"
+	"classname" "worldspawn"
+	"detailmaterial" "detail/detailsprites_2fort"
+	"detailvbsp" "detail_2fort.vbsp"
+	"maxpropscreenwidth" "-1"
+	"skyname" "sky_tf2_04"
+	[SOLIDS]
+}
+[ENTITIES]
+<cameras>
+<cordons>
