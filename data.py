@@ -3,12 +3,19 @@ import entity_creator
 
 solids = []
 entities = []
+variables = {}
 textures = {"DEV": "DEV/DEV_MEASUREGENERIC01B",
             "WOOD": "CP_MANOR/WOOD_FLOOR01",
             "SKYBOX": "TOOLS/TOOLSSKYBOX"}
 entity_types = {
     "light": "(R G B Brightness) _light: 255 255 255 200"
 }
+
+def SetVariable(key: str, value):
+    variables[key] = value
+    
+def GetVariable(key: str):
+    return variables[key] or None
 
 def SetSolidTexture(name: str):
     name = name.upper()
