@@ -1,25 +1,41 @@
 import contextlib
 import json
-
+import ErrorLog
+from collections import deque
 class ParameterExtractor:
 
     @staticmethod
     def extract_parameters(parameters_str: str) -> list:
-        # Extract dictionaries from the parameter string
-        extracted_dict, parameters_str = ParameterExtractor._extract_dict(parameters_str)
+        parameters = []
+        stack = deque()
+        temp_str = ""
 
-        # Split parameters and convert them to their respective types
-        parameters = [
-            ParameterExtractor._convert_parameter(param)
-            for param in parameters_str.split(',')
-        ]
+        for char in parameters_str:
+            if char == '{':
+                stack.append('{')
+                temp_str += char
+            elif char == '}':
+                if not stack or stack[-1] != '{':
+                    ErrorLog.ReportError("Unmatched closing brace detected.")
+                else:
+                    stack.pop()
+                    temp_str += char
+                    if not stack:
+                        parameters.append(ParameterExtractor._convert_parameter(temp_str.strip()))
+                        temp_str = ""
+            elif char == ',' and not stack:
+                parameters.append(ParameterExtractor._convert_parameter(temp_str.strip()))
+                temp_str = ""
+            else:
+                temp_str += char
 
-        # Replace placeholders with the actual extracted dictionaries
-        parameters = [
-            param if param != 'DICTPLACEHOLDER' else extracted_dict
-            for param in parameters
-        ]
+        if stack:
+            ErrorLog.ReportError("Unmatched opening brace detected.")
+            return []
+        if temp_str:
+            parameters.append(ParameterExtractor._convert_parameter(temp_str.strip()))
 
+        print(parameters)
         return parameters
 
     @staticmethod
@@ -29,25 +45,4 @@ class ParameterExtractor:
             return int(param)
         if param.replace('.', '', 1).isdigit():
             return float(param)
-        if param == 'DICTPLACEHOLDER':
-            return param
-        # Attempt to convert the parameter to a dictionary
-        try:
-            return json.loads(param)
-        except json.JSONDecodeError:
-            # Strip surrounding quotes if present
-            return param.strip('"').strip("'")
-
-    @staticmethod
-    def _extract_dict(s: str) -> (dict, str):
-        """Extracts the first dictionary from a string and returns the dictionary and the modified string."""
-        start, end = s.find('{'), s.rfind('}')
-        if start != -1 and end != -1:
-            # Extract the substring that represents the dictionary
-            dict_str = s[start:end + 1]
-            with contextlib.suppress(json.JSONDecodeError):
-                extracted_dict = json.loads(dict_str)
-                # Replace the dictionary in the original string with a placeholder
-                s = s.replace(dict_str, 'DICTPLACEHOLDER')
-                return extracted_dict, s
-        return {}, s
+        return param.strip('"').strip("'")

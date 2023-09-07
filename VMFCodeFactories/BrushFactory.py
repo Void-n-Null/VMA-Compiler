@@ -1,4 +1,4 @@
-from SideFactory import SideFactory
+from .SideFactory import SideFactory
 
 class BrushFactory:
     current_material = "DEV/DEV_MEASUREGENERIC01B"

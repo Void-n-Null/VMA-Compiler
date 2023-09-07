@@ -9,6 +9,8 @@ def brush(current_map: Map,parameters: list):
 
     6 Parameters:
         parameters (list): x, y, z coordinates followed by width, depth, and height.
+        scaling needs to be positive and above zero
+        no entities are allowed to exist inside of a brush
     """
     x, y, z, width, depth, height = map(int, parameters[:6])
     if width <= 0 or height <= 0 or depth <= 0:

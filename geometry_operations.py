@@ -26,3 +26,12 @@ def cross_product(a, b):
     
 def dot_product(a, b):
     return sum(a[i] * b[i] for i in range(3))
+
+def parse_number(number):
+    if 'e' not in number and '-' in number[1:]:
+        parts = number.split('-')
+        base = float(parts[0])
+        exponent = int(parts[1])
+        return int(base * (10 ** -exponent))
+    else:
+        return int(float(number))

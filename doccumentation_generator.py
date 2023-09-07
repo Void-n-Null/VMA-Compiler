@@ -1,4 +1,8 @@
 from CommandRegistry import commands
+import pkgutil
+package_name = 'commands'
+for _, module_name, _ in pkgutil.iter_modules([package_name]):
+    pkgutil.importlib.import_module(f"{package_name}.{module_name}")
 
 def documentation_report():
     """
