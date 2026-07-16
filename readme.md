@@ -2,7 +2,7 @@
 
 In August 2023 I wanted to know if an LLM could build a playable Team Fortress 2 map. The immediate obstacle is Valve's map format. VMF is verbose, largely undocumented, and hostile to programmatic generation: a single cube needs six sides, each with plane definitions, texture axis vectors computed from surface normals, and correct vertex winding order.
 
-Here is a cube in raw VMF (one side of six shown):
+Here is one of the six sides a cube needs in raw VMF:
 
 ```vmf
 solid
@@ -29,7 +29,7 @@ Here is the same cube in VMA:
 Brush(0, 0, 0, 64, 64, 64)
 ```
 
-So the project became: reverse engineer VMF by staring at decompiled official maps, work out how Hammer derives texture axes (cross products against the dominant world axis), and put a tiny scripting language on top so that neither a human nor a model ever has to think about any of it.
+So the project became: reverse engineer VMF by staring at decompiled official maps, work out how Hammer derives texture axes from cross products against the dominant world axis, and put a tiny scripting language on top so that neither a human nor a model ever has to think about any of it.
 
 ## What's here
 
