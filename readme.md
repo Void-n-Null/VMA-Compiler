@@ -54,7 +54,7 @@ Python 3.8+, no external dependencies.
 
 ## Did the AI part work?
 
-Sort of, and that was the interesting result. A 2023-era model could not write VMF at all, but given the four VMA commands and a short description it could reliably produce an arena: floor, perimeter walls, spawns for both teams, a platform in the middle. The abstraction was doing exactly what abstractions are for, spending my effort once so the model's effort stays cheap. A 1000-brush map in VMA is roughly 50x smaller than the equivalent VMF.
+Sort of. A 2023-era model could not write VMF at all, but given the four VMA commands and a short description it could reliably produce an arena: floor, perimeter walls, spawns for both teams, a platform in the middle. A 1000-brush map in VMA is also roughly 50x smaller than the equivalent VMF, which matters when every token costs money.
 
 ## Where the idea went
 
